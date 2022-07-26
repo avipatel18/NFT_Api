@@ -1,7 +1,19 @@
 var http = require("http");
 var express = require('express');
 var app = express();
-var emp_router = require("./mysql");
+var emp_router = require("./nft_mysql");
+
+const port = process.env.PORT || 8000;
+
+
+const cors = require("cors");
+const corsOptions = {
+    origin: '*',
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -26,7 +38,4 @@ app.get("/nft-details", (req, res) => {
     res.send("test")
 })
 
-app.listen(8081);
-
-// Console will print the message
-console.log('Server running at http://127.0.0.1:8081/');
+app.listen(port);

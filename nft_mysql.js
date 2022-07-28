@@ -19,7 +19,7 @@ global.document = document;
 
 function getMySQLConnection() {
     return mysql.createConnection({
-        host: '13.235.49.134/phpmyadmin',
+        host: '13.235.49.134',
         port: 3306,
         user: 'admin_vanlife',
         password: 'vanlife123',

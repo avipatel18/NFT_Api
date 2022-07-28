@@ -53,6 +53,8 @@ app.get('/allNFTs', function (req, res) {
 
 app.post('/addNFT', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requestedd-With, Content-Type, Accept');
 
     var connection = getMySQLConnection();
     connection.connect(function (err) {

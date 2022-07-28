@@ -19,11 +19,11 @@ global.document = document;
 
 function getMySQLConnection() {
     return mysql.createConnection({
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        password: 'root',
-        database: 'vanlife_nft'
+        host: 'https://13.235.49.134/phpmyadmin',
+        // port: 3306,
+        user: 'admin_vanlife',
+        password: 'vanlife123',
+        database: 'admin_vanlife'
     });
 }
 

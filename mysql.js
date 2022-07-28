@@ -5,8 +5,8 @@ var app = express.Router();
 
 function getMySQLConnection() {
     return mysql.createConnection({
-        host: 'https://13.235.49.134/phpmyadmin',
-        // port: 3306,
+        host: '13.235.49.134/phpmyadmin',
+        port: 3306,
         user: 'admin_vanlife',
         password: 'vanlife123',
         database: 'admin_vanlife'

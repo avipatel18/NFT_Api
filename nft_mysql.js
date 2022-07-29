@@ -5,18 +5,12 @@ const axios = require('axios');
 
 var app = express.Router();
 var jsdom = require("jsdom");
-const {
-    JSDOM
-} = jsdom;
-const {
-    window
-} = new JSDOM();
-const {
-    document
-} = (new JSDOM('')).window;
-if (typeof window !== 'undefined') {
-    //here `window` is available
-  }
+const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// if (typeof window !== 'undefined') {
+//     //here `window` is available
+//   }
+const { document} = (new JSDOM('')).window.document;
 global.document = document;
 
 
@@ -75,7 +69,7 @@ app.post('/addNFT', function (req, res) {
     var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
     let nftjson;
     // var $ = jQuery = require('jquery')(window);
-    $ = require('jquery')(new jsdom.JSDOM().window);
+    $ = require('jquery')(new jsdom.JSDOM().window.document);
     $.ajaxSetup({
         async: false
     });

@@ -71,14 +71,16 @@ app.post('/addNFT', function (req, res) {
     const nftID = nft_id;
     var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
     let nftjson;
-    var $ = jQuery = require('jquery')(window);
-    $.ajaxSetup({
-        async: false
-    });
-    $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
-        nftjson = data;
-    });
+    // var $ = jQuery = require('jquery')(window);
+    // $.ajaxSetup({
+    //     async: false
+    // });
+    // $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
+    //     nftjson = data;
+    // });
 
+    nftjson = nftDetails.getImageUrl(nftjson);
+    console.log(nftjson);
     var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
 
     var nftImageHash = parsedNFTJSON.image.substr(7);

@@ -75,5 +75,14 @@ const getOwner = (acctId) => {
 }
 
 
+function getImageUrl(nftcid0) {
+    return new Promise((resolve, reject) => {
+        axios('https://loopring.mypinata.cloud/ipfs/' + nftcid0).
+            then(res => {
+                resolve(res)
+            });
+    })
+}
+
 // module.exports = {getNFTDATA,getNFTHOLDER};
-module.exports = getNFTDetails;
+module.exports = { getNFTDetails, getImageUrl };

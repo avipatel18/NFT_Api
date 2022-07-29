@@ -14,6 +14,9 @@ const {
 const {
     document
 } = (new JSDOM('')).window;
+if (typeof window !== 'undefined') {
+    //here `window` is available
+  }
 global.document = document;
 
 
@@ -71,7 +74,8 @@ app.post('/addNFT', function (req, res) {
     const nftID = nft_id;
     var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
     let nftjson;
-    var $ = jQuery = require('jquery')(window);
+    // var $ = jQuery = require('jquery')(window);
+    $ = require('jquery')(new jsdom.JSDOM().window);
     $.ajaxSetup({
         async: false
     });

@@ -105,9 +105,9 @@ app.post('/addNFT', function (req, res) {
 
     connection.query('INSERT INTO nft_details(nft_id,nft_metadata,nft_image) VALUES (?,?,?)', [nft_id, nftcid0, nftImageHash], function (err, data) {
         if (err) {
-            res.status(500).json({
-                "status_code": 500,
-                "status_message": "internal server error"
+            res.status(700).json({
+                "status_code": 700,
+                "status_message": "error when data ennter internal server error"
             });
         } else {
             res.status(200).send((data));

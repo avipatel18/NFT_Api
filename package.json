@@ -13,6 +13,7 @@
     "@loopring-web/loopring-sdk": "^2.0.12",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "domino": "^2.1.6",
     "express": "^4.18.1",
     "jquery": "^3.6.0",
     "jsdom": "^20.0.0",

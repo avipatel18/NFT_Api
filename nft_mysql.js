@@ -4,17 +4,18 @@ var nftDetails = require('./nft_details');
 const axios = require('axios');
 
 var app = express.Router();
-var jsdom = require("jsdom");
-const {
-    JSDOM
-} = jsdom;
-const {
-    window
-} = new JSDOM();
-const {
-    document
-} = (new JSDOM('')).window;
-global.document = document;
+// var jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// if (typeof window !== 'undefined') {
+//     //here `window` is available
+//   }
+// const { document} = (new JSDOM('')).window.document;
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM(`<!DOCTYPE html>`);
+// const { document} = (new JSDOM('')).window.document;
+// global.document = document;
 
 
 function getMySQLConnection() {
@@ -83,13 +84,18 @@ app.post('/addNFT', function (req, res) {
     console.log(nftjson);
     var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
 
-    var nftImageHash = parsedNFTJSON.image.substr(7);
+
+
+    // var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
+
+    // var nftImageHash = parsedNFTJSON.image.substr(7);
+    var nftImageHash = "AAAAA11111BBBBB";
 
     connection.query('INSERT INTO nft_details(nft_id,nft_metadata,nft_image) VALUES (?,?,?)', [nft_id, nftcid0, nftImageHash], function (err, data) {
         if (err) {
-            res.status(500).json({
-                "status_code": 500,
-                "status_message": "internal server error"
+            res.status(700).json({
+                "status_code": 700,
+                "status_message": "error when data ennter internal server error"
             });
         } else {
             res.status(200).send((data));

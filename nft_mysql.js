@@ -14,9 +14,9 @@ var app = express.Router();
 // const { document} = (new JSDOM('')).window.document;
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const { window } = new JSDOM(`<!DOCTYPE html>`);
-const { document} = (new JSDOM('')).window.document;
-global.document = document;
+// const { window } = new JSDOM(`<!DOCTYPE html>`);
+// const { document} = (new JSDOM('')).window.document;
+// global.document = document;
 
 
 function getMySQLConnection() {
@@ -75,7 +75,7 @@ app.post('/addNFT', function (req, res) {
     let nftjson;
     // var $ = jQuery = require('jquery')(window);
     // $ = require('jquery')(new jsdom.JSDOM().window);
-    const $ = require('jQuery')(window);
+    const $ = require('jQuery');
 
     $.ajaxSetup({
         async: false

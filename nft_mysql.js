@@ -2,14 +2,19 @@ var express = require('express');
 var mysql = require('mysql');
 var nftDetails = require('./nft_details');
 const axios = require('axios');
+const domino = require('domino');
 
 var app = express.Router();
-var jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+// var jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
 // const { window } = new JSDOM();
 // if (typeof window !== 'undefined') {
 //     //here `window` is available
 //   }
+// const { document} = (new JSDOM('')).window.document;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM(`<!DOCTYPE html>`);
 const { document} = (new JSDOM('')).window.document;
 global.document = document;
 
@@ -69,7 +74,9 @@ app.post('/addNFT', function (req, res) {
     var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
     let nftjson;
     // var $ = jQuery = require('jquery')(window);
-    $ = require('jquery')(new jsdom.JSDOM().window.document);
+    // $ = require('jquery')(new jsdom.JSDOM().window);
+    const $ = require('jQuery')(window);
+
     $.ajaxSetup({
         async: false
     });

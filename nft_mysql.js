@@ -76,32 +76,37 @@ app.post('/addNFT', function (req, res) {
     // $ = require('jquery')(new jsdom.JSDOM().window);
     
     // const $ = require('jQuery');
-    $.ajaxSetup({
-        async: false
-    });
+
+    // $.ajaxSetup({
+    //     async: false
+    // });
+
+
     // $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
     //     nftjson = data;
     // });
-    var source='https://loopring.mypinata.cloud/ipfs/'+nftcid0;
-    $.ajax({
-        type: 'GET',
-        url: source,
-        contentType: "application/json",
-        dataType: 'json',
-        success: function (json) {
-            nftjson=json;
-        },
-        error: function (e) {
-            alert("error json data NFT not found");
-        }
-    });
+
+    // var source='https://loopring.mypinata.cloud/ipfs/'+nftcid0;
+    // $.ajax({
+    //     type: 'GET',
+    //     url: source,
+    //     contentType: "application/json",
+    //     dataType: 'json',
+    //     success: function (json) {
+    //         nftjson=json;
+    //     },
+    //     error: function (e) {
+    //         alert("error json data NFT not found");
+    //     }
+    // });
 
 
 
 
-    var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
+    // var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
 
-    var nftImageHash = parsedNFTJSON.image.substr(7);
+    // var nftImageHash = parsedNFTJSON.image.substr(7);
+    var nftImageHash = "AAAAA11111BBBBB";
 
     connection.query('INSERT INTO nft_details(nft_id,nft_metadata,nft_image) VALUES (?,?,?)', [nft_id, nftcid0, nftImageHash], function (err, data) {
         if (err) {

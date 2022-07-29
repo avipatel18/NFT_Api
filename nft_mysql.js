@@ -2,7 +2,6 @@ var express = require('express');
 var mysql = require('mysql');
 var nftDetails = require('./nft_details');
 const axios = require('axios');
-const domino = require('domino');
 
 var app = express.Router();
 // var jsdom = require("jsdom");
@@ -12,8 +11,8 @@ var app = express.Router();
 //     //here `window` is available
 //   }
 // const { document} = (new JSDOM('')).window.document;
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
 // const { window } = new JSDOM(`<!DOCTYPE html>`);
 // const { document} = (new JSDOM('')).window.document;
 // global.document = document;
@@ -75,14 +74,30 @@ app.post('/addNFT', function (req, res) {
     let nftjson;
     // var $ = jQuery = require('jquery')(window);
     // $ = require('jquery')(new jsdom.JSDOM().window);
-    const $ = require('jQuery');
-
+    
+    // const $ = require('jQuery');
     $.ajaxSetup({
         async: false
     });
-    $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
-        nftjson = data;
+    // $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
+    //     nftjson = data;
+    // });
+    var source='https://loopring.mypinata.cloud/ipfs/'+nftcid0;
+    $.ajax({
+        type: 'GET',
+        url: source,
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (json) {
+            nftjson=json;
+        },
+        error: function (e) {
+            alert("error json data NFT not found");
+        }
     });
+
+
+
 
     var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
 

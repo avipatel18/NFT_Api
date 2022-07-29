@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var emp_router = require("./nft_mysql");
 
+app.use(express.json());
+
 const port = process.env.PORT || 8000;
 
 

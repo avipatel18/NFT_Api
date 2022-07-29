@@ -84,12 +84,8 @@ app.post('/addNFT', function (req, res) {
     console.log(nftjson);
     var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
 
-
-
-    // var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
-
-    // var nftImageHash = parsedNFTJSON.image.substr(7);
-    var nftImageHash = "AAAAA11111BBBBB";
+    var nftImageHash = parsedNFTJSON.image.substr(7);
+    // var nftImageHash = "AAAAA11111BBBBB";
 
     connection.query('INSERT INTO nft_details(nft_id,nft_metadata,nft_image) VALUES (?,?,?)', [nft_id, nftcid0, nftImageHash], function (err, data) {
         if (err) {

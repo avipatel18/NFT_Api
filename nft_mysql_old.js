@@ -4,17 +4,18 @@ var nftDetails = require('./nft_details');
 const axios = require('axios');
 
 var app = express.Router();
-var jsdom = require("jsdom");
-const {
-    JSDOM
-} = jsdom;
-const {
-    window
-} = new JSDOM();
-const {
-    document
-} = (new JSDOM('')).window;
-global.document = document;
+// var jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// if (typeof window !== 'undefined') {
+//     //here `window` is available
+//   }
+// const { document} = (new JSDOM('')).window.document;
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM(`<!DOCTYPE html>`);
+// const { document} = (new JSDOM('')).window.document;
+// global.document = document;
 
 
 function getMySQLConnection() {
@@ -29,7 +30,6 @@ function getMySQLConnection() {
 
 
 app.get('/allNFTs', function (req, res) {
-
     var connection = getMySQLConnection();
     connection.connect(function (err) {
         if (err) throw err;
@@ -54,39 +54,65 @@ app.get('/allNFTs', function (req, res) {
 
 app.post('/addNFT', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requestedd-With, Content-Type, Accept');
 
     var connection = getMySQLConnection();
     connection.connect(function (err) {
         if (err) throw err;
         console.log("Connected!");
     });
-    var nft_id = req.body.nftid;
-
+    var nft_id = req.body.nftid; //solved
     const sdk = require("@loopring-web/loopring-sdk");
-    const CHAIN_ID = 5
+    const CHAIN_ID = 1
     const nftAPI = new sdk.NFTAPI({
         chainId: CHAIN_ID
     });
     const nftID = nft_id;
     var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
-    let nftjson;
-    var $ = jQuery = require('jquery')(window);
-    $.ajaxSetup({
-        async: false
-    });
-    $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
-        nftjson = data;
-    });
+    // var nftcid0 = "QmTrAX8wn4xzTAMmLSehyCSggVDhDLidQNgbmSX6fh6ZbL";
+    // let nftjson;
+    // var $ = jQuery = require('jquery')(window);
+    // $ = require('jquery')(new jsdom.JSDOM().window);
+    
+    // const $ = require('jQuery');
 
-    var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
+    // $.ajaxSetup({
+    //     async: false
+    // });
 
-    var nftImageHash = parsedNFTJSON.image.substr(7);
+
+    // $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
+    //     nftjson = data;
+    // });
+
+    // var source='https://loopring.mypinata.cloud/ipfs/'+nftcid0;
+    // $.ajax({
+    //     type: 'GET',
+    //     url: source,
+    //     contentType: "application/json",
+    //     dataType: 'json',
+    //     success: function (json) {
+    //         nftjson=json;
+    //     },
+    //     error: function (e) {
+    //         alert("error json data NFT not found");
+    //     }
+    // });
+
+
+
+
+    // var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
+
+    // var nftImageHash = parsedNFTJSON.image.substr(7);
+    var nftImageHash = "QmUWG1m3VzisiWTgC1BNMKjsQ2zDFnVC5MY2ieSDuxbBkA";
 
     connection.query('INSERT INTO nft_details(nft_id,nft_metadata,nft_image) VALUES (?,?,?)', [nft_id, nftcid0, nftImageHash], function (err, data) {
         if (err) {
-            res.status(500).json({
-                "status_code": 500,
-                "status_message": "internal server error"
+            res.status(700).json({
+                "status_code": 700,
+                "status_message": "error when data ennter internal server error"
             });
         } else {
             res.status(200).send((data));
@@ -120,23 +146,14 @@ app.get('/getNFTowners', function (req, res) {
                 var tempid = nftid["nft_id"];
                 var nftdata;
 
-                var pro=nftDetails(tempid);
-
-
-                // pro = nftDetails(tempid).view();
-                // console.log("pro");
-
-                console.log("pro"+pro);
-    
+                pro = nftDetails(tempid);
 
             });
-            
         }
-        res.status(200).send((rows));
-        connection.end();
     });
-    
+    connection.end();
 });
+
 
 module.exports = app;
 

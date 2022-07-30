@@ -64,14 +64,15 @@ app.post('/addNFT', function (req, res) {
     });
     var nft_id = req.body.nftid;
 
-    const sdk = require("@loopring-web/loopring-sdk");
-    const CHAIN_ID = 1
-    const nftAPI = new sdk.NFTAPI({
-        chainId: CHAIN_ID
-    });
-    const nftID = nft_id;
-    var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
-    let nftjson;
+    // const sdk = require("@loopring-web/loopring-sdk");
+    // const CHAIN_ID = 1
+    // const nftAPI = new sdk.NFTAPI({
+    //     chainId: CHAIN_ID
+    // });
+    // const nftID = nft_id;
+    // var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
+    var nftcid0 = "2345434AAAA343433AA";
+    // let nftjson;
     // var $ = jQuery = require('jquery')(window);
     // $ = require('jquery')(new jsdom.JSDOM().window);
     

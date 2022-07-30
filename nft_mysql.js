@@ -62,25 +62,28 @@ app.post('/addNFT', function (req, res) {
     });
     var nft_id = req.body.nftid;
 
-    const sdk = require("@loopring-web/loopring-sdk");
-    const CHAIN_ID = 5
-    const nftAPI = new sdk.NFTAPI({
-        chainId: CHAIN_ID
-    });
-    const nftID = nft_id;
-    var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
-    let nftjson;
-    var $ = jQuery = require('jquery')(window);
-    $.ajaxSetup({
-        async: false
-    });
-    $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
-        nftjson = data;
-    });
+    // const sdk = require("@loopring-web/loopring-sdk");
+    // const CHAIN_ID = 5
+    // const nftAPI = new sdk.NFTAPI({
+    //     chainId: CHAIN_ID
+    // });
+    // const nftID = nft_id;
+    // var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
+    // let nftjson;
+    // var $ = jQuery = require('jquery')(window);
+    // $.ajaxSetup({
+    //     async: false
+    // });
+    // $.getJSON('https://loopring.mypinata.cloud/ipfs/' + nftcid0, function (data) {
+    //     nftjson = data;
+    // });
 
-    var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
+    // var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
 
-    var nftImageHash = parsedNFTJSON.image.substr(7);
+    // var nftImageHash = parsedNFTJSON.image.substr(7);
+
+    nftcid0="QmNNMVydDLCLtaG4URdoSa285uSrDpBe14Xc8JSmFogowb";
+    nftImageHash="QmNNMVydDLCLtaG4URdoSa285uSrDpBe14Xc8JSmFogowb";
 
     connection.query('INSERT INTO nft_details(nft_id,nft_metadata,nft_image) VALUES (?,?,?)', [nft_id, nftcid0, nftImageHash], function (err, data) {
         if (err) {

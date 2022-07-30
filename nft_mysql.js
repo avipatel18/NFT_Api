@@ -67,8 +67,8 @@ app.post('/addNFT', function (req, res) {
     const nftAPI = new sdk.NFTAPI({
         chainId: CHAIN_ID
     });
-    const nftID = nft_id;
-    var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
+    // const nftID = nft_id;
+    var nftcid0 = nftAPI.ipfsNftIDToCid("0xbc7de12e19467e415af8de27866fcab4ac6f4b40f28add13d94d747f897da06c");
 
     // var nftcid0 = "QmNNMVydDLCLtaG4URdoSa285uSrDpBe14Xc8JSmFogowb";
 

@@ -71,7 +71,7 @@ app.post('/addNFT', function (req, res) {
     // });
     // const nftID = nft_id;
     // var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
-    var nftcid0 = "2345434AAAA343433AA";
+    var nftcid0 = "QmTrAX8wn4xzTAMmLSehyCSggVDhDLidQNgbmSX6fh6ZbL";
     // let nftjson;
     // var $ = jQuery = require('jquery')(window);
     // $ = require('jquery')(new jsdom.JSDOM().window);
@@ -107,7 +107,7 @@ app.post('/addNFT', function (req, res) {
     // var parsedNFTJSON = JSON.parse(JSON.stringify(nftjson))
 
     // var nftImageHash = parsedNFTJSON.image.substr(7);
-    var nftImageHash = "AAAAA11111BBBBB";
+    var nftImageHash = "QmUWG1m3VzisiWTgC1BNMKjsQ2zDFnVC5MY2ieSDuxbBkA";
 
     connection.query('INSERT INTO nft_details(nft_id,nft_metadata,nft_image) VALUES (?,?,?)', [nft_id, nftcid0, nftImageHash], function (err, data) {
         if (err) {

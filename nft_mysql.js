@@ -62,8 +62,8 @@ app.post('/addNFT', function (req, res) {
         if (err) throw err;
         console.log("Connected!");
     });
+
     var nft_id = req.body.nftid;
-    console.log("Body.NftId: " + nft_id);
 
     const sdk = require("@loopring-web/loopring-sdk");
     const CHAIN_ID = 5
@@ -132,6 +132,30 @@ app.get('/getNFTowners', function (req, res) {
         }
     });
     connection.end();
+});
+
+
+app.delete('/deleteNFTs', function (req, res) {
+    var connection = getMySQLConnection();
+    connection.connect(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+    });
+
+    var nft_id = req.body.nftid;
+
+    connection.query('delete from nft_details where nft_id = ?', [nft_id], function (err, rows, fields) {
+        if (err) {
+            res.status(500).json({
+                "status_code": 500,
+                "status_message": "internal server error"
+            });
+        } else {
+            res.status(200);
+        }
+    });
+    connection.end();
+
 });
 
 

@@ -104,6 +104,29 @@ app.post('/addNFT', function (req, res) {
 });
 
 
+app.get('/getCID', function (req, res) {
+
+    var connection = getMySQLConnection();
+    connection.connect(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+    });
+
+    var nft_id = req.body.nftid;
+
+    const sdk = require("@loopring-web/loopring-sdk");
+    const CHAIN_ID = 5
+    const nftAPI = new sdk.NFTAPI({
+        chainId: CHAIN_ID
+    });
+    const nftID = nft_id;
+    var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
+
+    res.status(200).send((nftcid0));
+    connection.end();
+
+});
+
 app.get('/getNFTowners', function (req, res) {
 
     var connection = getMySQLConnection();

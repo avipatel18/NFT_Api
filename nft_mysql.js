@@ -1,4 +1,5 @@
 var express = require('express');
+const sdk = require("@loopring-web/loopring-sdk");
 var mysql = require('mysql');
 var nftDetails = require('./nft_details');
 const axios = require('axios');
@@ -108,18 +109,11 @@ app.get('/getCID', function (req, res) {
 
     var nft_id = "0xbc7de12e19467e415af8de27866fcab4ac6f4b40f28add13d94d747f897da06c";
 
-    const sdk = require("@loopring-web/loopring-sdk");
-    const CHAIN_ID=5;
-    // const nftAPI = new sdk.NFTAPI({
-    //     chainId: CHAIN_ID
-    // });
-    const nftAPI={
-        "baseUrl": "https://api.loopring.network",
-        "chainId": 1,
-        "timeout": 6000
-      }
+    const CHAIN_ID=1;
+    const nftAPI = new sdk.NFTAPI({
+        chainId: CHAIN_ID
+    });
      var nftcid0 = nftAPI.ipfsNftIDToCid(nft_id);
-
     res.status(200).send((nftcid0));
     connection.end();
 

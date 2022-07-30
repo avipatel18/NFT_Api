@@ -119,8 +119,7 @@ app.get('/getCID', function (req, res) {
     const nftAPI = new sdk.NFTAPI({
         chainId: CHAIN_ID
     });
-    const nftID = nft_id;
-    var nftcid0 = nftAPI.ipfsNftIDToCid(nftID);
+    var nftcid0 = nftAPI.ipfsNftIDToCid(nft_id);
 
     res.status(200).send((nftcid0));
     connection.end();

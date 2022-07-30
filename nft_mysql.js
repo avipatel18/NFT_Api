@@ -60,7 +60,8 @@ app.post('/addNFT', function (req, res) {
         if (err) throw err;
         console.log("Connected!");
     });
-    var nft_id = req.body.nftid;
+    // var nft_id = req.body.nftid;
+    var nft_id = "0xbc7de12e19467e415af8de27866fcab4ac6f4b40f28add13d94d747f897da06c";
 
     // const sdk = require("@loopring-web/loopring-sdk");
     // const CHAIN_ID = 5

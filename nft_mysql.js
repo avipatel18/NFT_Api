@@ -86,7 +86,7 @@ app.post('/addNFT', function (req, res) {
         if (err) {
             res.status(500).json({
                 "status_code": 500,
-                "status_message": "internal server error"
+                "status_message": "1internal server error"
             });
         } else {
             res.status(200).send((data));

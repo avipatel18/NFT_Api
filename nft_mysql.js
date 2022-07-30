@@ -65,7 +65,7 @@ app.post('/addNFT', function (req, res) {
     var nft_id = req.body.nftid;
 
     const sdk = require("@loopring-web/loopring-sdk");
-    const CHAIN_ID = 5
+    const CHAIN_ID = 1
     const nftAPI = new sdk.NFTAPI({
         chainId: CHAIN_ID
     });

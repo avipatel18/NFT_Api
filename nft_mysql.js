@@ -110,12 +110,17 @@ app.get('/getCID', function (req, res) {
 
     const sdk = require("@loopring-web/loopring-sdk");
     const CHAIN_ID=5;
-    const nftAPI = new sdk.NFTAPI({
-        chainId: CHAIN_ID
-    });
-    // var nftcid0 = nftAPI.ipfsNftIDToCid(nft_id);
+    // const nftAPI = new sdk.NFTAPI({
+    //     chainId: CHAIN_ID
+    // });
+    const nftAPI={
+        "baseUrl": "https://api.loopring.network",
+        "chainId": 1,
+        "timeout": 6000
+      }
+     var nftcid0 = nftAPI.ipfsNftIDToCid(nft_id);
 
-    res.status(200).send((nftAPI));
+    res.status(200).send((nftcid0));
     connection.end();
 
 });
